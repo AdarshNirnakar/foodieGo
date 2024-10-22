@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 const RestaurantMenuPage = () => {
-    const [menu, setMenu] = useState([]);
+    
     const [categories, setCategories] = useState([]);
     const [expandedCategory, setExpandedCategory] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
         getRestaurantData();
-    }, [id])
+    })
 
     const getRestaurantData = async () => {
         try {
@@ -29,10 +29,9 @@ const RestaurantMenuPage = () => {
                 }));
 
             setCategories(menuCategories);
-            setMenu(menuCategories.flatMap(category => category.items));
+            
         } catch (error) {
             console.error('Error fetching restaurant data:', error);
-            // You might want to set an error state here and display it to the user
         }
     }
 
@@ -41,8 +40,8 @@ const RestaurantMenuPage = () => {
             <li key={index} className="mb-4 p-4 bg-white rounded-lg shadow-md">
                 <div className="flex justify-between items-start">
                     <div>
-                        <h3 className="font-semibold text-lg text-orange-600">{item.name}</h3>
-                        <span className="text-orange-500 font-medium">₹{item.price / 100}</span>
+                        <h3 className="font-semibold text-lg text-gray-800">{item.name}</h3>
+                        <span className="text-gray-600 font-medium">₹{item.price / 100}</span>
                     </div>
                 </div>
                 {item.description && (
@@ -61,13 +60,13 @@ const RestaurantMenuPage = () => {
     }
 
     return (
-        <div className="container mx-auto p-4 bg-gradient-to-r from-yellow-100 to-orange-100">
-            <h2 className="text-3xl font-bold mb-6 text-orange-800">Menu</h2>
+        <div className="container mx-auto p-4 bg-white">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800">Menu</h2>
             <ul className="space-y-4">
                 {categorizeMenu().map((category) => (
-                    <li key={category.name} className="border rounded-lg overflow-hidden shadow-lg bg-gradient-to-r from-yellow-100 to-orange-100">
+                    <li key={category.name} className="border rounded-lg overflow-hidden shadow-lg bg-white">
                         <div 
-                            className="bg-orange-500 text-white p-3 cursor-pointer hover:bg-orange-600 transition duration-300"
+                            className="bg-gray-100 text-gray-800 p-3 cursor-pointer hover:bg-gray-200 transition duration-300"
                             onClick={() => toggleCategory(category.name)}
                         >
                             <h3 className="text-xl font-semibold">{category.name} <span className="text-sm">({category.items.length} items)</span></h3>

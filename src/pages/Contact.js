@@ -13,19 +13,31 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form after submission
-    setFormData({ name: '', email: '', message: '' });
+    
   };
 
   return (
-    <div className="container mx-auto p-8 bg-gradient-to-br from-blue-50 to-blue-100">
-      <h1 className="text-4xl font-bold mb-6 text-blue-700">Contact Foodiego</h1>
-      <p className="mb-6 text-gray-700">
-        We'd love to hear from you! Whether you have a question about our services, 
-        want to partner with us, or just want to say hello, feel free to reach out.
+    <div className="container mx-auto p-8">
+      <h1 className="text-4xl font-bold mb-6">Connect With Us</h1>
+      <p className="mb-8 text-gray-700">
+        Have questions or need assistance? Reach out to us anytime. We're here to help you succeed.
       </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <ContactInfo
+          title="Customer Support"
+          info="support@foodiego.com"
+        />
+        <ContactInfo
+          title="Business Inquiries"
+          info="partners@foodiego.com"
+        />
+        <ContactInfo
+          title="Phone"
+          info="+1 (555) 123-4567"
+        />
+      </div>
+
       <form onSubmit={handleSubmit} className="max-w-lg">
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name</label>
@@ -70,16 +82,15 @@ const Contact = () => {
           Send Message
         </button>
       </form>
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4 text-blue-700">Other Ways to Reach Us</h2>
-        <p className="text-gray-700">
-          <strong>Customer Support:</strong> support@foodiego.com<br />
-          <strong>Business Inquiries:</strong> partners@foodiego.com<br />
-          <strong>Phone:</strong> +1 (555) 123-4567
-        </p>
-      </div>
     </div>
   )
 }
+
+const ContactInfo = ({ title, info }) => (
+  <div className="bg-white p-4 rounded-lg shadow">
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-gray-600">{info}</p>
+  </div>
+)
 
 export default Contact
